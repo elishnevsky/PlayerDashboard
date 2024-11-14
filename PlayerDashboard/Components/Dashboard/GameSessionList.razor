@@ -1,0 +1,22 @@
+﻿@inject PlayerDashboard.Data.IPlayerRepository PlayerRepository
+
+<Panel Title="Recent Gaming Sessions">
+    <div class="space-y-4">
+        @foreach (var session in _gameSessions)
+        {
+            <GameSessionListItem GameSession="session" />
+        }
+    </div>
+</Panel>
+
+@code {
+    [CascadingParameter(Name = "PlayerId")]
+    public int PlayerId { get; set; }
+
+    private List<GameSessionDto> _gameSessions { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        _gameSessions = PlayerRepository.GetGameSessionsByPlayerId(PlayerId).Take(10).ToList();
+    }
+}

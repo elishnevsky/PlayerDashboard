@@ -1,0 +1,10 @@
+﻿<CascadingValue Value="@playerId" Name="PlayedId">
+    @ChildContent
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    private int playerId = 1;
+}

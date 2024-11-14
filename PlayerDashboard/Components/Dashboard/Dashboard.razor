@@ -1,0 +1,25 @@
+﻿@inject PlayerDashboard.Data.IPlayerRepository PlayerRepository
+
+<PlayerInfo Player="@_player" />
+
+<div class="mt-6 grid grid-cols-3 gap-6">
+    <div class="space-y-6">
+        <AccountDetails Player="@_player" />
+        <PlayerStats Player="@_player" />
+    </div>
+    <div class="col-span-2">
+        <GameSessionList />
+    </div>
+</div>
+
+@code {
+    [CascadingParameter(Name = "PlayerId")]
+    public int PlayerId { get; set; }
+
+    private PlayerDto? _player;
+
+    protected override void OnInitialized()
+    {
+        _player = PlayerRepository.GetPlayerById(PlayerId);
+    }
+}

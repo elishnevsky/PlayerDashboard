@@ -1,0 +1,16 @@
+﻿<section class="bg-white border border-gray-300 rounded-xl shadow-md p-6">
+    <h2 class="text-3xl">
+        @Title
+    </h2>
+    <div class="mt-6">
+        @ChildContent
+    </div>
+</section>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = String.Empty;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

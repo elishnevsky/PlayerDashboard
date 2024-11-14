@@ -1,0 +1,28 @@
+﻿<span>
+    @PlaytimeFormatted
+</span>
+
+@code {
+    // Total playtime in minutes.
+    [Parameter]
+    public int TotalPlaytime { get; set; }
+
+    // Formats the total playtime for display.
+    private string PlaytimeFormatted => FormatPlaytime(TotalPlaytime);
+
+    // Converts total minutes to a string displaying the equivalent days, hours, and minutes.
+    private string FormatPlaytime(int totalMinutes)
+    {
+        // Calculate the number of days by dividing totalMinutes by the number of minutes in a day (1440).
+        int days = totalMinutes / (24 * 60);
+
+        // Calculate the number of hours remaining after extracting days, using modulus to find the remainder.
+        int hours = (totalMinutes % (24 * 60)) / 60;
+
+        // Calculate the remaining minutes after extracting days and hours.
+        int minutes = totalMinutes % 60;
+
+        // Return the formatted string displaying days, hours, and minutes.
+        return $"{days} days, {hours} hours, {minutes} minutes";
+    }
+}
