@@ -1,6 +1,6 @@
 ﻿@* The purpose of this component is to simulate signed in user with a player ID *@
 
-<CascadingValue Value="@playerId" Name="PlayedId">
+<CascadingValue Value="@_playerId" Name="PlayerId" IsFixed="true">
     @ChildContent
 </CascadingValue>
 
@@ -8,5 +8,5 @@
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
-    private int playerId = 1;
+    private int _playerId = 1;
 }

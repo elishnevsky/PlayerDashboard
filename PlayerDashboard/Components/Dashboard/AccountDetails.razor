@@ -1,19 +1,26 @@
 ﻿<Panel Title="Account Details">
-    <div class="flex items-center">
-        <Calendar class="size-6 text-gray-500 mr-2" />
-        <span class="inline-block w-40 text-gray-700">Account Created:</span>
-        <span>@Player?.AccountCreatedDate.ToShortDateString()</span>
-    </div>
-    <div class="flex items-center mt-4">
-        <Email class="size-6 text-gray-500 mr-2" />
-        <span class="inline-block w-40 text-gray-700">Email Address:</span>
-        <span>@Player?.EmailAddress</span>
-    </div>
-    <div class="flex items-center mt-4">
-        <Birthday class="size-6 text-gray-500 mr-2" />
-        <span class="inline-block w-40 text-gray-700">Date of Birth:</span>
-        <span>@Player?.DateOfBirth.ToShortDateString()</span>
-    </div>
+    @if (Player != null)
+    {
+        <div class="flex items-center">
+            <Calendar class="size-6 text-gray-500 mr-2" />
+            <span class="inline-block w-40 text-gray-700">Account Created:</span>
+            <span>@Player?.AccountCreatedDate.ToShortDateString()</span>
+        </div>
+        <div class="flex items-center mt-4">
+            <Email class="size-6 text-gray-500 mr-2" />
+            <span class="inline-block w-40 text-gray-700">Email Address:</span>
+            <span>@Player?.EmailAddress</span>
+        </div>
+        <div class="flex items-center mt-4">
+            <Birthday class="size-6 text-gray-500 mr-2" />
+            <span class="inline-block w-40 text-gray-700">Date of Birth:</span>
+            <span>@Player?.DateOfBirth.ToShortDateString()</span>
+        </div>
+    }
+    else
+    {
+        <Spinner />
+    }
 </Panel>
 
 @code {

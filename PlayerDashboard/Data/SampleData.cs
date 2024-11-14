@@ -52,8 +52,6 @@ public static class SampleData
         // Calculate average game time
         player.AverageGameTimeMinutes = player.TotalGames > 0 ? player.TotalPlaytimeMinutes / player.TotalGames : 0;
 
-        Console.WriteLine(player.TotalPlaytimeMinutes);
-
         Player = player;
     }
 

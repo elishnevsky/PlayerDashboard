@@ -1,19 +1,27 @@
 ﻿@inject PlayerDashboard.Data.IPlayerRepository PlayerRepository
 
 <Panel Title="Recent Gaming Sessions">
-    <div class="space-y-4">
-        @foreach (var session in _gameSessions)
-        {
-            <GameSessionListItem GameSession="session" />
-        }
-    </div>
+    @if (_gameSessions != null)
+    {
+        <div class="space-y-4">
+            @foreach (var session in _gameSessions)
+            {
+                <GameSessionListItem GameSession="session" />
+            }
+        </div>
+    }
+    else
+    {
+        <Spinner />
+    }
 </Panel>
 
 @code {
     [CascadingParameter(Name = "PlayerId")]
     public int PlayerId { get; set; }
 
-    private List<GameSessionDto> _gameSessions { get; set; } = new();
+    private List<GameSessionDto>? _gameSessions { get; set; }
+    private bool _loading = true;
 
     protected override async Task OnInitializedAsync()
     {
