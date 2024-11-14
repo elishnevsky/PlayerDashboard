@@ -15,8 +15,8 @@
 
     private List<GameSessionDto> _gameSessions { get; set; } = new();
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        _gameSessions = PlayerRepository.GetGameSessionsByPlayerId(PlayerId).Take(10).ToList();
+        _gameSessions = await PlayerRepository.GetGameSessionsByPlayerIdAsync(PlayerId, 5);
     }
 }
