@@ -3,6 +3,7 @@
 
 @if (Visible)
 {
+    // This div element serves as a mask
     <div class="absolute inset-0 bg-black/50 flex justify-center items-center" @onclick="OnCancel">
         <Panel Class="relative w-[600px]" Title="Edit Profile">
             <EditForm EditContext="editContext" OnSubmit="Submit" FormName="PlayerInfoForm" class="space-y-4">
