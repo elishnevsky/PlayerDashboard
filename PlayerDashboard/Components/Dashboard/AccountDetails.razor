@@ -4,7 +4,7 @@
         <div class="flex items-center">
             <Calendar class="size-6 text-gray-500 mr-2" />
             <span class="inline-block w-40 text-gray-700">Account Created:</span>
-            <span>@Player?.AccountCreatedDate.ToShortDateString()</span>
+            <span>@Player?.AccountCreatedDate.ToString("MMMM dd, yyyy")</span>
         </div>
         <div class="flex items-center mt-4">
             <Email class="size-6 text-gray-500 mr-2" />
@@ -14,7 +14,7 @@
         <div class="flex items-center mt-4">
             <Birthday class="size-6 text-gray-500 mr-2" />
             <span class="inline-block w-40 text-gray-700">Date of Birth:</span>
-            <span>@Player?.DateOfBirth.ToShortDateString()</span>
+            <span>@Player?.DateOfBirth.ToString("MMMM dd, yyyy")</span>
         </div>
     }
     else

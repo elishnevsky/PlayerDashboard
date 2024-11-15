@@ -23,11 +23,11 @@
         <div class="flex items-center">
             <Calendar class="size-4 text-gray-700" />
             <span class="ml-1">
-                @GameSession.Date.ToShortDateString()
+                @GameSession.Date.ToString("MMM dd, yyyy")
             </span>
             <Clock class="size-4 text-gray-700 ml-4" />
             <span class="ml-1">
-                @GameSession.Duration
+                <PlaytimeDisplay TotalMinutes="@GameSession.Duration" />
             </span>
             <Trophy class="size-4 text-gray-700 ml-4" />
             <span class="ml-1">

@@ -7,7 +7,7 @@
             </div>
             <div class="flex flex-col ml-4">
                 <div class="text-gray-500 text-sm">Total Games</div>
-                <div class="font-bold text-2xl">@Player?.TotalGames</div>
+                <div class="font-bold text-2xl">@Player.TotalGames</div>
             </div>
         </div>
 
@@ -17,7 +17,7 @@
             </div>
             <div class="flex flex-col ml-4">
                 <div class="text-gray-500 text-sm">Win Rate</div>
-                <div class="font-bold text-2xl">@Player?.WinRate</div>
+                <div class="font-bold text-2xl">@Player.WinRate</div>
             </div>
         </div>
 
@@ -27,7 +27,9 @@
             </div>
             <div class="flex flex-col ml-4">
                 <div class="text-gray-500 text-sm">Avg Game Time</div>
-                <div class="font-bold text-2xl">@(Player?.AverageGameTimeMinutes) minutes</div>
+                <div class="font-bold text-2xl">
+                    <PlaytimeDisplay TotalMinutes="Player.AverageGameTimeMinutes" />
+                </div>
             </div>
         </div>
     }
