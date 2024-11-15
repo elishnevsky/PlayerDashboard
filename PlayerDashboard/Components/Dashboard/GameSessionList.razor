@@ -17,14 +17,13 @@
 </Panel>
 
 @code {
-    [CascadingParameter(Name = "PlayerId")]
-    public int PlayerId { get; set; }
+    [CascadingParameter]
+    public required UserDto User { get; set; }
 
     private List<GameSessionDto>? _gameSessions { get; set; }
-    private bool _loading = true;
 
     protected override async Task OnInitializedAsync()
     {
-        _gameSessions = await PlayerRepository.GetGameSessionsByPlayerIdAsync(PlayerId, 5);
+        _gameSessions = await PlayerRepository.GetGameSessionsByPlayerIdAsync(User.PlayerId, 5);
     }
 }

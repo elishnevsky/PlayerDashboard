@@ -1,6 +1,7 @@
-﻿@* The purpose of this component is to simulate signed in user with a player ID *@
+﻿@* CascadingValue is used to pass a value down the component tree to all descendant components. *@
+@* In a real application I would use CascadingAuthenticationState instead of this component. *@
 
-<CascadingValue Value="@_playerId" Name="PlayerId" IsFixed="true">
+<CascadingValue Value="@_user" IsFixed="true">
     @ChildContent
 </CascadingValue>
 
@@ -8,5 +9,6 @@
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
-    private int _playerId = 1;
+    // Simulates a user object with a PlayerId, which could be an authenticated user
+    private UserDto _user = new UserDto { PlayerId = 1 };
 }

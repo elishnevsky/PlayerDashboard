@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using PlayerDashboard.Components;
 using PlayerDashboard.Data;
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Name=ConnectionStrings:Dashboard"));
 builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
 
 var app = builder.Build();

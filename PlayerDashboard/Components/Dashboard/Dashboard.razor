@@ -1,5 +1,4 @@
 ﻿@inject PlayerDashboard.Data.IPlayerRepository PlayerRepository
-@rendermode InteractiveServer
 
 <PlayerInfo Player="@_player" />
 
@@ -14,13 +13,13 @@
 </div>
 
 @code {
-    [CascadingParameter(Name = "PlayerId")]
-    public int PlayerId { get; set; }
+    [CascadingParameter]
+    public required UserDto User { get; set; }
 
     private PlayerDto? _player;
 
     protected override async Task OnInitializedAsync()
     {
-        _player = await PlayerRepository.GetPlayerByIdAsync(PlayerId);
+        _player = await PlayerRepository.GetPlayerByIdAsync(User.PlayerId);
     }
 }

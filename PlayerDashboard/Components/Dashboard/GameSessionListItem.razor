@@ -3,7 +3,7 @@
 @if (GameSession != null)
 {
     <div class="rounded-lg border shadow p-4">
-        <div class="flex items-center gap-2">
+        <div class="flex items-center">
             @switch (GameSession.GameMode)
             {
                 case GameMode.Solo:
@@ -16,7 +16,7 @@
                     <Knockout class="size-4" />
                     break;
             }
-            <span class="font-bold text-gray-800">
+            <span class="font-bold text-gray-800 ml-1">
                 @GameSession.GameMode.GetDisplayName()
             </span>
         </div>

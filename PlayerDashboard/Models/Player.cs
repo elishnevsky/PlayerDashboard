@@ -9,7 +9,7 @@ public class Player
     public string EmailAddress { get; set; } = String.Empty;
     public DateOnly DateOfBirth { get; set; }
 
-    // Stats are updated at the end of each game sessions to avoid expensive calculations.
+    // Stats should be updated at the end of each game sessions to avoid expensive calculations
     public int TotalPlaytimeMinutes { get; set; }
     public int AverageGameTimeMinutes { get; set; }
     public int TotalGames { get; set; }

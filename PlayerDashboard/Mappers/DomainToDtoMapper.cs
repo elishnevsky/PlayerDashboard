@@ -5,6 +5,7 @@ namespace PlayerDashboard.Mappers;
 
 public static class DomainToDtoMapper
 {
+    // Extension method on Player class to map it to PlayerDto
     public static PlayerDto ToPlayerDto(this Player player)
     {
         return new PlayerDto
@@ -22,6 +23,7 @@ public static class DomainToDtoMapper
         };
     }
 
+    // Extension method on GameSession class to map it to GameSessionDto
     public static GameSessionDto ToGameSessionDto(this GameSession gameSession)
     {
         return new GameSessionDto

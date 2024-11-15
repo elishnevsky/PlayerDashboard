@@ -3,9 +3,11 @@ using PlayerDashboard.Shared;
 
 namespace PlayerDashboard.Data;
 
+// This class is used solely for generating random data to seed the database
 public static class SampleData
 {
     public static Player Player { get; }
+    public static List<GameSession> GameSessions { get; } = new();
 
     private static readonly Random random = new Random();
 
@@ -41,18 +43,13 @@ public static class SampleData
             });
         }
 
-        // Add sessions to the player's game sessions
-        player.GameSessions.AddRange(sessions);
-
-        // Calculate total playtime, games, and wins
-        player.TotalPlaytimeMinutes = sessions.Sum(s => s.Duration.Minutes);
+        player.TotalPlaytimeMinutes = sessions.Sum(s => s.Duration);
         player.TotalGames = sessions.Count;
         player.TotalWins = sessions.Count(s => s.Won);
-
-        // Calculate average game time
         player.AverageGameTimeMinutes = player.TotalGames > 0 ? player.TotalPlaytimeMinutes / player.TotalGames : 0;
 
         Player = player;
+        GameSessions = sessions;
     }
 
     private static TimeOnly GetRandomTime()
@@ -68,16 +65,13 @@ public static class SampleData
         return TimeOnly.FromTimeSpan(TimeSpan.FromMinutes(randomMinutes));
     }
 
-    private static TimeSpan GetRandomDuration()
+    private static int GetRandomDuration()
     {
         int minDuration = 30;    // 30 minutes
         int maxDuration = 240;   // 4 hours in minutes
 
-        // Generate a random duration in minutes within the range
-        int randomMinutes = random.Next(minDuration, maxDuration + 1);
-
-        // Return a TimeSpan representing the duration
-        return TimeSpan.FromMinutes(randomMinutes);
+        // Generate and return a random duration in minutes within the range
+        return random.Next(minDuration, maxDuration + 1);
     }
 
     private static GameMode GetRandomGameMode()

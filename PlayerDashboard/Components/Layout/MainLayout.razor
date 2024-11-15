@@ -1,13 +1,15 @@
 ﻿@inherits LayoutComponentBase
 
+@* Application header. In a real app this would likely be a separate component *@
 <div class="shadow-lg bg-white py-6 sticky top-0">
     <div class="container mx-auto px-4">
-        <h1 class="text-3xl font-bold text-gray-700">Fake Game</h1>
+        <h1 class="text-3xl font-bold text-gray-700 outline-none">Fake Game</h1>
     </div>
 </div>
 
 <div class="container mx-auto px-4 mt-6">
     <main>
+        @* UserContext passes down User instance to all descendant components *@
         <UserContext>
             @Body
         </UserContext>
