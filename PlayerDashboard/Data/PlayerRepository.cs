@@ -51,6 +51,7 @@ public class PlayerRepository : IPlayerRepository
         // Prepares a query to fetch game sessions for the specified player ID, without tracking changes
         var sessionsQuery = _appDbContext.GameSessions
                                          .AsNoTracking()
+                                         .OrderByDescending(session => session.Date)
                                          .Where(session => session.PlayerId == id);
 
         // Applies a limit on the number of sessions if 'take' parameter has a value
