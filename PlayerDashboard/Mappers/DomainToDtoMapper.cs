@@ -13,6 +13,7 @@ public static class DomainToDtoMapper
             Id = player.Id,
             DisplayName = player.DisplayName,
             Level = player.Level,
+            AvatarUrl = player.AvatarUrl,
             AccountCreatedDate = player.AccountCreatedDate,
             EmailAddress = player.EmailAddress,
             DateOfBirth = player.DateOfBirth,

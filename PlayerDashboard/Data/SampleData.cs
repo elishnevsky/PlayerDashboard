@@ -21,9 +21,10 @@ public static class SampleData
             Id = 1,
             DisplayName = "ProGamer123",
             AccountCreatedDate = accountCreatedDate,
+            Level = 120,
+            AvatarUrl = "https://cdn.jsdelivr.net/gh/alohe/memojis/png/upstream_17.png",
             EmailAddress = "john.smith@microsoft.com",
             DateOfBirth = new DateOnly(2008, 8, 10),
-            Level = 120
         };
 
         // Create game sessions

@@ -5,6 +5,7 @@ public class Player
     public int Id { get; set; }
     public string DisplayName { get; set; } = String.Empty;
     public int Level { get; set; }
+    public string? AvatarUrl { get; set; }
     public DateOnly AccountCreatedDate { get; set; }
     public string EmailAddress { get; set; } = String.Empty;
     public DateOnly DateOfBirth { get; set; }

@@ -1,7 +1,7 @@
 ﻿@if (Player != null)
 {
     <div class="flex items-center">
-        <img src="https://cdn.jsdelivr.net/gh/alohe/memojis/png/3d_4.png" class="rounded-full border-2 border-gray-600 shadow" width="60" height="60" />
+        <img src="@Player.AvatarUrl" class="rounded-full border-2 border-gray-600 shadow" width="60" height="60" />
         <div class="ml-4">
             <h1 class="text-3xl font-bold">
                 @Player.DisplayName<span>'s Profile</span>
