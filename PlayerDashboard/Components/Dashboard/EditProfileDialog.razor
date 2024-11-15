@@ -1,0 +1,85 @@
+﻿@inject PlayerDashboard.Data.IPlayerRepository PlayerRepository
+@inject ILogger<EditProfileDialog> Logger
+
+@if (Visible)
+{
+    <div class="absolute inset-0 bg-black/50 flex justify-center items-center" @onclick="OnCancel">
+        <Panel Class="relative w-[600px]" Title="Edit Profile">
+            <EditForm EditContext="editContext" OnSubmit="Submit" FormName="PlayerInfoForm" class="space-y-4">
+                <div>
+                    <label>
+                        <span class="block">Display Name</span>
+                        <InputText @bind-Value="Model!.DisplayName" class="form-input w-full" />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <span class="block">Avatar URL</span>
+                        <InputText @bind-Value="Model!.AvatarUrl" class="form-input w-full" />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <span class="block">Email Address</span>
+                        <InputText @bind-Value="Model!.EmailAddress" class="form-input w-full" />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <span class="block">Date of Birth</span>
+                        <InputDate @bind-Value="Model!.DateOfBirth" class="form-input w-full" />
+                    </label>
+                </div>
+                <div class="flex justify-between">
+                    <button type="submit" class="rounded bg-blue-500 text-white px-4 py-2 hover:bg-blue-400 active:bg-blue-600">Submit</button>
+                    <button type="button" class="rounded bg-gray-300 text-black px-4 py-2 hover:bg-gray-200 active:bg-gray-500" @onclick="OnCancel">Cancel</button>
+                </div>
+            </EditForm>
+        </Panel>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public bool Visible { get; set; } = false;
+
+    [Parameter]
+    public EventCallback OnCancel { get; set; }
+
+    [Parameter]
+    public EventCallback OnSave { get; set; }
+
+    [Parameter, EditorRequired]
+    public PlayerDto? Player { get; set; }
+
+    [SupplyParameterFromForm]
+    public PlayerFormModel? Model { get; set; } = new();
+
+    private EditContext? editContext;
+
+    protected override void OnParametersSet()
+    {
+        if (Player == null)
+        {
+            Model ??= new();
+        }
+        else
+        {
+            Model = new()
+                {
+                    DisplayName = Player.DisplayName,
+                    AvatarUrl = Player.AvatarUrl!,
+                    EmailAddress = Player.EmailAddress,
+                    DateOfBirth = Player.DateOfBirth
+                };
+        }
+
+        editContext = new(Model);
+    }
+
+    private async Task Submit()
+    {
+        await PlayerRepository.UpdatePlayerProfileAsync(Player!.Id, Model!);
+        await OnSave.InvokeAsync();
+    }
+}

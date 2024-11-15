@@ -63,4 +63,31 @@ public class PlayerRepository : IPlayerRepository
         // Executes the query and converts each game session entity to a GameSessionDto for returning
         return await sessionsQuery.Select(session => session.ToGameSessionDto()).ToListAsync();
     }
+
+    public async Task UpdatePlayerProfileAsync(int id, PlayerFormModel model)
+    {
+        if (model == null)
+        {
+            throw new ArgumentNullException(nameof(model));
+        }
+
+        var player = await _appDbContext.Players.FindAsync(id);
+
+        // Checks if the player was not found in the database
+        if (player == null)
+        {
+            // Throws a general exception if player not found;
+            // Consider using a custom exception (e.g., PlayerNotFoundException) for better error handling
+            throw new ApplicationException($"Player with ID {id} not found");
+        }
+
+        // Update fields
+        player.DisplayName = model.DisplayName;
+        player.EmailAddress = model.EmailAddress;
+        player.AvatarUrl = model.AvatarUrl;
+        player.DateOfBirth = model.DateOfBirth;
+
+        // Save the player
+        await _appDbContext.SaveChangesAsync();
+    }
 }

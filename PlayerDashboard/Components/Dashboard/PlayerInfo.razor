@@ -1,8 +1,8 @@
 ﻿@if (Player != null)
 {
     <div class="flex items-center">
-        <img src="@Player.AvatarUrl" class="rounded-full border-2 border-gray-600 shadow" width="60" height="60" />
-        <div class="ml-4">
+        <img src="@Player.AvatarUrl" class="rounded-full shadow-md size-16"/>
+        <div class="flex-1 ml-4">
             <h1 class="text-3xl font-bold">
                 @Player.DisplayName<span>'s Profile</span>
             </h1>
@@ -10,10 +10,20 @@
                 Level: @Player.Level
             </div>
         </div>
+        <div>
+            <button
+                type="button"
+                class="border border-gray-300 bg-white rounded-lg px-4 py-2"
+                @onclick="OnEditProfile"
+            >Edit Profile</button>
+        </div>
     </div>
 }
 
 @code {
     [Parameter]
     public PlayerDto? Player { get; set; }
+
+    [Parameter]
+    public EventCallback OnEditProfile { get; set; }
 }

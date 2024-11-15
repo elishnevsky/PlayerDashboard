@@ -1,6 +1,6 @@
 ﻿@inject PlayerDashboard.Data.IPlayerRepository PlayerRepository
 
-<PlayerInfo Player="@_player" />
+<PlayerInfo Player="@_player" OnEditProfile="OnEditProfile" />
 
 <div class="mt-6 grid grid-cols-3 gap-6">
     <div class="space-y-6">
@@ -12,13 +12,37 @@
     </div>
 </div>
 
+<EditProfileDialog
+    Visible="_editProfile"
+    Player="_player"
+    OnSave="OnSaveProfile"
+    OnCancel="OnEditCancel"
+/>
+
 @code {
     [CascadingParameter]
     public required UserDto User { get; set; }
 
     private PlayerDto? _player;
 
+    private bool _editProfile = false;
+
     protected override async Task OnInitializedAsync()
+    {
+        await LoadPlayer();
+    }
+
+    private void OnEditProfile() => _editProfile = true;
+
+    private void OnEditCancel() => _editProfile = false;
+
+    private async Task OnSaveProfile()
+    {
+        _editProfile = false;
+        await LoadPlayer();
+    }
+
+    private async Task LoadPlayer()
     {
         _player = await PlayerRepository.GetPlayerByIdAsync(User.PlayerId);
     }

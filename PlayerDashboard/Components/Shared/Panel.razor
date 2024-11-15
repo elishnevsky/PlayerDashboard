@@ -1,4 +1,4 @@
-﻿<section class="bg-white border border-gray-300 rounded-xl shadow-md p-6">
+﻿<section class="bg-white border border-gray-300 rounded-xl shadow-md p-6 @(Class)" @onclick:stopPropagation="true">
     <h2 class="text-3xl">
         @Title
     </h2>
@@ -13,4 +13,7 @@
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string Class { get; set; } = String.Empty;
 }

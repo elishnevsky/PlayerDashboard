@@ -10,6 +10,8 @@ namespace PlayerDashboard.Data
         // Asynchronously retrieves a list of game sessions for a specific player by their ID
         // Allows an optional limit on the number of sessions returned ('take' parameter)
         Task<List<GameSessionDto>> GetGameSessionsByPlayerIdAsync(int id, int? take = null);
-    }
 
+        // Asynchronously updates basic player information
+        Task UpdatePlayerProfileAsync(int id, PlayerFormModel model);
+    }
 }
