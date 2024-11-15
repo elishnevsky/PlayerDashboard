@@ -363,7 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # SQLite generated file
-.db-shm
-.db-wal
 *.db-shm
 *.db-wal
