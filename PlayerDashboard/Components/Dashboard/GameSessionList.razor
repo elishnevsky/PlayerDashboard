@@ -3,6 +3,16 @@
 <Panel Title="Recent Gaming Sessions">
     @if (_gameSessions != null)
     {
+        <div class="flex items-center space-x-2 mb-3">
+            <span>Show</span>
+            <select @onchange="OnSessionCountChange" class="border border-gray-500 rounded">
+                <option value="">All</option>
+                <option value="5" selected>5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+            </select>
+            <span>games</span>
+        </div>
         <div class="space-y-4">
             @foreach (var session in _gameSessions)
             {
@@ -21,9 +31,29 @@
     public required UserDto User { get; set; }
 
     private List<GameSessionDto>? _gameSessions { get; set; }
+    private int? _showSessions = 5;
 
     protected override async Task OnInitializedAsync()
     {
-        _gameSessions = await PlayerRepository.GetGameSessionsByPlayerIdAsync(User.PlayerId, 5);
+        await LoadGameSessions();
+    }
+
+    private async Task OnSessionCountChange(ChangeEventArgs e)
+    {
+        if (Int32.TryParse(e.Value?.ToString(), out int count))
+        {
+            _showSessions = count;
+        }
+        else
+        {
+            _showSessions = null;
+        }
+
+        await LoadGameSessions();
+    }
+
+    private async Task LoadGameSessions()
+    {
+        _gameSessions = await PlayerRepository.GetGameSessionsByPlayerIdAsync(User.PlayerId, _showSessions);
     }
 }
