@@ -4,14 +4,16 @@
     @if (_gameSessions != null)
     {
         <div class="flex items-center space-x-2 mb-3">
-            <span>Show</span>
-            <select @onchange="OnSessionCountChange" class="border border-gray-500 rounded">
-                <option value="">All</option>
-                <option value="5" selected>5</option>
-                <option value="10">10</option>
-                <option value="20">20</option>
-            </select>
-            <span>games</span>
+            <label>
+                <span>Show</span>
+                <select @onchange="OnSessionCountChange" class="border border-gray-500 rounded">
+                    <option value="">All</option>
+                    <option value="5" selected>5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                </select>
+                <span>games</span>
+            </label>
         </div>
         <div class="space-y-4">
             @foreach (var session in _gameSessions)
